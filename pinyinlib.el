@@ -155,12 +155,13 @@
   :group 'convinience)
 
 (defcustom pinyinlib--char-table-type
-  'pinyin
+  'mix
   "Which char table type to use."
   :group 'pinyinlib
   :type '(choice :tag "Which char table to use"
                  (const :tag "Pinyin" pinyin)
-                 (const :tag "Wubi" wubi)))
+                 (const :tag "Wubi" wubi)
+                 (const :tag "Pinyin + Wubi" mix)))
 
 (defconst pinyinlib--pinyin-simplified-char-table
   '("阿啊呵腌嗄锕吖爱哀挨碍埃癌艾唉矮哎皑蔼隘暧霭捱嗳瑷嫒锿嗌砹安案按暗岸俺谙黯鞍氨庵桉鹌胺铵揞犴埯昂肮盎奥澳傲熬敖凹袄懊坳嗷拗鏖骜鳌翱岙廒遨獒聱媪螯鏊"
@@ -302,13 +303,19 @@ Powered by OpenCC. Thanks to BYVoid.")
   "Get the simplified char table."
   (cl-case pinyinlib--char-table-type
     ('wubi pinyinlib--wubi-simplified-char-table)
-    ('pinyin pinyinlib--pinyin-simplified-char-table)))
+    ('pinyin pinyinlib--pinyin-simplified-char-table)
+    ('mix (seq-mapn #'concat
+                    pinyinlib--wubi-simplified-char-table
+                    pinyinlib--pinyin-simplified-char-table))))
 
 (defun pinyinlib--get-traditional-char-table ()
   "Get the traditional char table."
   (cl-case pinyinlib--char-table-type
     ('wubi pinyinlib--wubi-traditional-char-table)
-    ('pinyin pinyinlib--pinyin-traditional-char-table)))
+    ('pinyin pinyinlib--pinyin-traditional-char-table)
+    ('mix (seq-mapn #'concat
+                    pinyinlib--wubi-traditional-char-table
+                    pinyinlib--pinyin-traditional-char-table))))
 
 (defun pinyinlib-build-regexp-char
     (char &optional no-punc-p tranditional-p only-chinese-p mixed-p)
