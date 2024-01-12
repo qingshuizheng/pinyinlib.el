@@ -154,7 +154,7 @@
   "The char table used by find char."
   :group 'convinience)
 
-(defcustom pinyinlib--char-table-type
+(defcustom pinyinlib-char-table-type
   'mix
   "Which char table type to use."
   :group 'pinyinlib
@@ -301,7 +301,7 @@ Powered by OpenCC. Thanks to BYVoid.")
 
 (defun pinyinlib--get-simplified-char-table ()
   "Get the simplified char table."
-  (cl-case pinyinlib--char-table-type
+  (cl-case pinyinlib-char-table-type
     ('wubi pinyinlib--wubi-simplified-char-table)
     ('pinyin pinyinlib--pinyin-simplified-char-table)
     ('mix (seq-mapn #'concat
@@ -310,7 +310,7 @@ Powered by OpenCC. Thanks to BYVoid.")
 
 (defun pinyinlib--get-traditional-char-table ()
   "Get the traditional char table."
-  (cl-case pinyinlib--char-table-type
+  (cl-case pinyinlib-char-table-type
     ('wubi pinyinlib--wubi-traditional-char-table)
     ('pinyin pinyinlib--pinyin-traditional-char-table)
     ('mix (seq-mapn #'concat
