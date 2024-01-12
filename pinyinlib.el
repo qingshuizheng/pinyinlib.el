@@ -83,24 +83,24 @@
 
 ;;   When converting English punctuactions to Chinese/English punctuations,
 ;;   it uses the following table:
-;;    English Punctuation  Chinese & English Punctuations 
+;;    English Punctuation  Chinese & English Punctuations
 ;;   -----------------------------------------------------
-;;    .                    。.                            
-;;    ,                    ，,                            
-;;    ?                    ？?                            
-;;    :                    ：:                            
-;;    !                    ！!                            
-;;    ;                    ；;                            
-;;    \\                   、\\                           
-;;    (                    （(                            
-;;    )                    ）)                            
-;;    <                    《<                            
-;;    >                    》>                            
-;;    ~                    ～~                            
-;;    '                    ‘’「」'                      
-;;    "                    “”『』\"                     
-;;    *                    ×*                            
-;;    $                    ￥$                            
+;;    .                    。.
+;;    ,                    ，,
+;;    ?                    ？?
+;;    :                    ：:
+;;    !                    ！!
+;;    ;                    ；;
+;;    \\                   、\\
+;;    (                    （(
+;;    )                    ）)
+;;    <                    《<
+;;    >                    》>
+;;    ~                    ～~
+;;    '                    ‘’「」'
+;;    "                    “”『』\"
+;;    *                    ×*
+;;    $                    ￥$
 
 
 ;; 1.2 `pinyinlib-build-regexp-string'
@@ -299,10 +299,10 @@ Powered by OpenCC. Thanks to BYVoid.")
     (?$ . "[￥$]")))
 
 (defun pinyinlib--get-simplified-char-table ()
-    "Get the simplified char table."
-    (cl-case pinyinlib--char-table-type
-      ('wubi pinyinlib--wubi-simplified-char-table)
-      ('pinyin pinyinlib--pinyin-simplified-char-table)))
+  "Get the simplified char table."
+  (cl-case pinyinlib--char-table-type
+    ('wubi pinyinlib--wubi-simplified-char-table)
+    ('pinyin pinyinlib--pinyin-simplified-char-table)))
 
 (defun pinyinlib--get-traditional-char-table ()
   "Get the traditional char table."
@@ -340,7 +340,7 @@ Powered by OpenCC. Thanks to BYVoid.")
 (defun pinyinlib-build-regexp-string
     (str &optional no-punc-p tranditional-p only-chinese-p mixed-p)
   (mapconcat (lambda (c) (pinyinlib-build-regexp-char
-                      c no-punc-p tranditional-p only-chinese-p mixed-p))
+                          c no-punc-p tranditional-p only-chinese-p mixed-p))
              str
              ""))
 
